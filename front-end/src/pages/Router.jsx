@@ -6,18 +6,22 @@ import Header from "../components/header";
 import EventPage from "./eventPage";
 import ProductDetail from "./productDetail";
 import CategorySearch from "./categorySearch";
+import Login from "./Login";
+import SignUp from "./signUp";
 
 const Router = () => {
     return (
         <>
         <BrowserRouter>
-            <Header />
+        <Header />
             <Routes>
-                <Route path="/" element={<MainSearch />} />
+                <Route exact path="/" element={<MainSearch />} />
                 <Route path="/Search" element={<SearchResult />} />
                 <Route path="/Event" element={<EventPage />} />
                 <Route path="/Search/ProductDetail" element={<ProductDetail />} />
                 <Route path="/CategorySearch" element={<CategorySearch />} />
+                <Route path="/Login" element={<Login />} />
+                <Route path="/signUp" element={<SignUp />} />
             </Routes>
         </BrowserRouter>
         </>
