@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import LogoImg from "../img/Logo2.png";
 
 const Header = () => {
+    const locationNow = useLocation();
     const navigate = useNavigate();
+
+    if (locationNow.pathname === "/Login") return undefined;
+
+    if (locationNow.pathname === "/signUp") return undefined;
 
     const goMain = () => {
         navigate("/");
@@ -18,10 +23,14 @@ const Header = () => {
         navigate("/CategorySearch");
     }
 
+    const goLogin = () => {
+        navigate("/Login");
+    }
+
     return(
         <>
         <Wrapper>
-            <Menu1>로그인</Menu1>
+            <Menu1 onClick={ goLogin }>로그인</Menu1>
             <Menu1>마이페이지</Menu1>
             <Menu1>고객센터</Menu1>
         </Wrapper>
@@ -57,6 +66,7 @@ const Menu1 = styled.a`
     color:white;
     text-align:center;
     margin-top:5px;
+    cursor: pointer;
 `;
 
 const MenuWrapper = styled.div`
