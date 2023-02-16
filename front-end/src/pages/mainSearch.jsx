@@ -1,21 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import search from "../img/search.png";
 
 const MainSearch = () => {
     const navigate = useNavigate();
+    const [name,setName] = useState("");
 
     const searchText = (e) => {
         if(e.key === 'Enter') {
-            navigate("/Search");
+            navigate("/Search", {
+                state: {
+                    name: name
+                }
+            });
         }
     };
 
     return (
     <>
     <InputSearch>
-        <InputBox type="text" onKeyPress={searchText} placeholder="검색어를 입력해주세요." />
+        <InputBox type="text" 
+        onKeyPress={searchText} 
+        placeholder="검색어를 입력해주세요." 
+        value={ name }
+        onChange={(event) => setName(event.target.value)}
+        />
         <InputLabel><SearchLogo src={ search }></SearchLogo></InputLabel>
     </InputSearch>
     <Footer>

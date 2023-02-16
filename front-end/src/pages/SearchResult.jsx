@@ -1,70 +1,79 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import testImg from "../img/puppy.jpg"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 
 const SearchResult = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const name = location.state.name;
 
-    const goDetail = () => {
+    const [products, setProduct] = useState([]);
+
+    const goDetail = (id) => {
         navigate('ProductDetail');
     };
 
+    useEffect(() => {
+        async function searchData() {
+            const page = 0;
+            const config = {
+                params: { name: name, page: page },
+                headers: {
+                    Authorization: localStorage.getItem("Authorization"),
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json'
+                }
+            };
+            try {
+                await axios
+                    .get(" http://localhost:8080/api/products/search", config)
+                    .then((res) => {
+                        console.log("호출합니다.");
+                        console.log(res);
+                        setProduct(res.data.content);
+                    });
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        searchData();
+    }, []);
+
     return (
         <>
-        <SearchFrame>
-            <p>검색어에 대한 검색 결과 입니다.</p>
-        </SearchFrame>
-        <ProductList>
-            <Product>
-                <ProductUl>
-                    <ProductLi>
-                        <LinkTag href="" onClick={ goDetail }>
-                            <DescriptionDiv>
-                                <ProductImg src="https://images.yogiyo.co.kr/image/yogiyo/STOCK_IMG/%ED%95%9C%EC%8B%9D/%EC%9A%94%EB%A6%AC-%EB%B3%B6%EC%9D%8C%EB%A5%98/%EC%8A%A4%ED%83%81_20201223_DHK%EC%99%B8%EB%B6%80_%EB%82%99%EA%B3%B1%EC%83%88_Side01_1080x640_MJWU36.jpg?width=384&height=273&quality=100" />
-                                <TextDiv>
-                                    <p>제목이 들어갑니다.</p>
-                                    <p>설명이 들어갑니다.</p>
-                                </TextDiv>
-                            </DescriptionDiv>
-                            <ButtonDiv>
-                                <p>가격이 들어갑니다.</p>
-                            </ButtonDiv>
-                        </LinkTag>
-                    </ProductLi>
-                    <ProductLi>
-                        <LinkTag href="">
-                            <DescriptionDiv>
-                                <ProductImg src="https://images.yogiyo.co.kr/image/yogiyo/STOCK_IMG/%ED%95%9C%EC%8B%9D/%EC%9A%94%EB%A6%AC-%EB%B3%B6%EC%9D%8C%EB%A5%98/%EC%8A%A4%ED%83%81_20201223_DHK%EC%99%B8%EB%B6%80_%EB%82%99%EA%B3%B1%EC%83%88_Side01_1080x640_MJWU36.jpg?width=384&height=273&quality=100"/>
-                                <TextDiv>
-                                    <p>제목이 들어갑니다.</p>
-                                    <p>설명이 들어갑니다.</p>
-                                </TextDiv>
-                            </DescriptionDiv>
-                            <ButtonDiv>
-                                <p>가격이 들어갑니다.</p>
-                            </ButtonDiv>
-                        </LinkTag>
-                    </ProductLi>
-                    <ProductLi>
-                        <LinkTag href="">
-                            <DescriptionDiv>
-                                <ProductImg src={testImg}/>
-                                <TextDiv>
-                                    <p>제목이 들어갑니다.</p>
-                                    <p>설명이 들어갑니다.</p>
-                                </TextDiv>
-                            </DescriptionDiv>
-                            <ButtonDiv>
-                                <p>가격이 들어갑니다.</p>
-                            </ButtonDiv>
-                        </LinkTag>
-                    </ProductLi>
-                </ProductUl>
-            </Product>
-        </ProductList>
+            <SearchFrame>
+                <p><TextSpan>{name}</TextSpan> 에 대한 검색 결과 입니다.</p>
+            </SearchFrame>
+            <ProductList>
+                <Product>
+                    <ProductUl>
+                        {products?.map((product) => {
+                            return (
+                                <ProductLi key={product.id}>
+                                    <LinkTag href="#" onClick={goDetail}>
+                                        <DescriptionDiv>
+                                            <ProductImg src={testImg} />
+                                            <TextDiv>
+                                                <p>{product.name}</p>
+                                                <p>{product.description}</p>
+                                            </TextDiv>
+                                        </DescriptionDiv>
+                                        <ButtonDiv>
+                                            <p>{product.price}원</p>
+                                        </ButtonDiv>
+                                    </LinkTag>
+                                </ProductLi>
+                            );
+                        })}
+                    </ProductUl>
+                </Product>
+            </ProductList>
         </>
     );
+
 };
 
 export default SearchResult;
@@ -76,10 +85,10 @@ const SearchFrame = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size:40px;
+    font-size:30px;
     color:#14aaff;
     font-weight:bolder;
-    border-bottom:2px solid #0078ff;
+    border-bottom:2px solid #ddd;
 `;
 
 const ProductList = styled.div`
@@ -131,4 +140,8 @@ const TextDiv = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     margin-left:20px;
+`;
+
+const TextSpan = styled.span`
+    color:black;
 `;
