@@ -23,6 +23,22 @@ const Header = () => {
         navigate("/CategorySearch");
     }
 
+    const domesticSearch = () => {
+        navigate("/DomesticSearch");
+    }
+
+    const foreignSearch = () => {
+        navigate("/foreignSearch");
+    }
+
+    const bestsellerSearch = () => {
+        navigate("/bestsellerSearch");
+    }
+
+    const ebookSearch = () => {
+        navigate("/ebookSearch");
+    }
+
     const goLogin = () => {
         navigate("/Login");
     }
@@ -39,10 +55,11 @@ const Header = () => {
                 <Logo src={ LogoImg } onClick={ goMain } />
             </LogoContainer>
             <MenuContainer>
-                <MenuBanner1 onClick={ categorySearch }>메뉴1</MenuBanner1>
-                <MenuBanner1 onClick={ categorySearch }>메뉴2</MenuBanner1>
-                <MenuBanner1 onClick={ categorySearch }>메뉴3</MenuBanner1>
-                <MenuBanner1 onClick={ categorySearch }>메뉴4</MenuBanner1>
+                <MenuBanner1 onClick={ categorySearch }>HOME</MenuBanner1>
+                <MenuBanner1 onClick={ domesticSearch }>국내도서</MenuBanner1>
+                <MenuBanner1 onClick={ foreignSearch }>해외도서</MenuBanner1>
+                <MenuBanner1 onClick={ ebookSearch }>E-BOOK</MenuBanner1>
+                <MenuBanner1 onClick={ bestsellerSearch }>베스트셀러</MenuBanner1>
                 <MenuBanner1 onClick={ goEvent }>이벤트</MenuBanner1>
             </MenuContainer>
         </MenuWrapper>
