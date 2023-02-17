@@ -80,6 +80,7 @@ const ProductImg = styled.img`
     width:45vh;
     height:60vh;
     z-index:1;
+    box-shadow: 2px 2px 2px 2px #000;
 `;
 
 const ProductDec = styled.div`
