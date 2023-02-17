@@ -15,9 +15,12 @@ const BestsellerSearch = () => {
         <>
         <MenuWrap>
             <Banner>
-                <p>베스트셀러</p>
-                <BannerLine>
-                </BannerLine>
+                <TitleBox>
+                    <p>베스트셀러</p>
+                </TitleBox>
+                <BannerBox>
+                    <p>Banner</p>
+                </BannerBox>
             </Banner>
             <ProductList>
                 <Product onClick={ goDetail }>
@@ -48,15 +51,13 @@ const MenuWrap = styled.div`
 const Banner = styled.div`
     width:50vh;
     height:100%;
-    border-bottom:2px solid #ddd;
     display:flex;
     justify-content:center;
+    flex-direction:column;
+    align-items:center;
     font-weight:bolder;
     font-size:25px;
     margin-top:10px;
-`;
-
-const BannerLine = styled.div`
 `;
 
 const ProductList = styled.div`
@@ -86,6 +87,7 @@ const ProductImg = styled.img`
 const ProductDec = styled.div`
     display:flex;
     flex-direction: column;
+    margin-top:10px;
 `;
 
 const TitleP = styled.p`
@@ -105,4 +107,20 @@ const PriceP = styled.p`
     margin:0;
     margin-left:5px;
     color: #74747B;
+`;
+
+const TitleBox = styled.div`
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-bottom:3px solid #ddd;
+`;
+
+const BannerBox = styled.div`
+    margin-top:15px;
+    width:40vh;
+    height:60vh;
+    border:1px solid #ddd;
 `;
