@@ -10,6 +10,10 @@ import Login from "./Login";
 import SignUp from "./signUp";
 import axios from "axios";
 import Loading from "../components/loading";
+import DomesticSearch from "./domesticSearch";
+import ForeignSearch from "./foreignSearch";
+import BestsellerSearch from "./bestsellerSearch";
+import EbookSearch from "./ebookSearch";
 
 const Router = () => {
     const [loading, setLoading] = useState(false)
@@ -44,8 +48,17 @@ const Router = () => {
                     <Route path="/Event" element={<EventPage />} />
                     <Route path="/Search/ProductDetail" element={<ProductDetail />} />
                     <Route path="/CategorySearch" element={<CategorySearch />} />
+                    <Route path="/CategorySearch/ProductDetail" element={<ProductDetail />} />
                     <Route path="/Login" element={<Login />} />
                     <Route path="/signUp" element={<SignUp />} />
+                    <Route path="/bestsellerSearch" element={<BestsellerSearch />} />
+                    <Route path="/bestsellerSearch/ProductDetail" element={<ProductDetail />} />
+                    <Route path="/domesticSearch" element={<DomesticSearch />} />
+                    <Route path="/domesticSearch/ProductDetail" element={<ProductDetail />} />
+                    <Route path="/foreignSearch" element={<ForeignSearch />} />
+                    <Route path="/foreignSearch/ProductDetail" element={<ProductDetail />} />
+                    <Route path="/ebookSearch" element={<EbookSearch />} />
+                    <Route path="/ebookSearch/ProductDetail" element={<ProductDetail />} />
                 </Routes>
             </React.Suspense>
         </BrowserRouter>

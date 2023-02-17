@@ -1,136 +1,223 @@
 import React from "react";
 import styled from "styled-components";
+import BookImg from "../img/book_test.jpeg";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const CategorySearch = () => {
+    const navigate = useNavigate();
+
+    const goDetail = () => {
+        navigate("ProductDetail");
+    };
 
     return (
         <>
         <MenuWrap>
             <Banner>
-                <p>MenuName</p>
+                <p>HOME</p>
                 <BannerLine>
                 </BannerLine>
             </Banner>
             <ProductList>
-                <Product>
-                    <ProductImg>
+                <Product onClick={ goDetail }>
+                    <ProductImg src={ BookImg }>
 
                     </ProductImg>
                     <ProductDec>
-                        <p>a</p>
+                        <TitleP>title</TitleP>
+                        <DateP>date</DateP>
+                        <PriceP>price</PriceP>
                     </ProductDec>
                 </Product>
-                <Product>
-                    <ProductImg>
+                <Product onClick={ goDetail }>
+                    <ProductImg src={ BookImg }>
 
                     </ProductImg>
                     <ProductDec>
-                        <p>a</p>
+                        <TitleP>title</TitleP>
+                        <DateP>date</DateP>
+                        <PriceP>price</PriceP>
                     </ProductDec>
                 </Product>
-                <Product>
-                    <ProductImg>
+                <Product onClick={ goDetail }>
+                    <ProductImg src={ BookImg }>
 
                     </ProductImg>
                     <ProductDec>
-                        <p>a</p>
+                        <TitleP>title</TitleP>
+                        <DateP>date</DateP>
+                        <PriceP>price</PriceP>
                     </ProductDec>
                 </Product>
-                <Product>
-                    <ProductImg>
+                <Product onClick={ goDetail }>
+                    <ProductImg src={ BookImg }>
 
                     </ProductImg>
                     <ProductDec>
-                        <p>a</p>
+                        <TitleP>title</TitleP>
+                        <DateP>date</DateP>
+                        <PriceP>price</PriceP>
                     </ProductDec>
                 </Product>
-                <Product>
-                    <ProductImg>
+                <Product onClick={ goDetail }>
+                    <ProductImg src={ BookImg }>
 
                     </ProductImg>
                     <ProductDec>
-                        <p>a</p>
+                        <TitleP>title</TitleP>
+                        <DateP>date</DateP>
+                        <PriceP>price</PriceP>
                     </ProductDec>
                 </Product>
-                <Product>
-                    <ProductImg>
+                <Product onClick={ goDetail }>
+                    <ProductImg src={ BookImg }>
 
                     </ProductImg>
                     <ProductDec>
-                        <p>a</p>
+                        <TitleP>title</TitleP>
+                        <DateP>date</DateP>
+                        <PriceP>price</PriceP>
                     </ProductDec>
                 </Product>
-                <Product>
-                    <ProductImg>
+                <Product onClick={ goDetail }>
+                    <ProductImg src={ BookImg }>
 
                     </ProductImg>
                     <ProductDec>
-                        <p>a</p>
+                        <TitleP>title</TitleP>
+                        <DateP>date</DateP>
+                        <PriceP>price</PriceP>
                     </ProductDec>
                 </Product>
-                <Product>
-                    <ProductImg>
+                <Product onClick={ goDetail }>
+                    <ProductImg src={ BookImg }>
 
                     </ProductImg>
                     <ProductDec>
-                        <p>a</p>
+                        <TitleP>title</TitleP>
+                        <DateP>date</DateP>
+                        <PriceP>price</PriceP>
                     </ProductDec>
                 </Product>
-                <Product>
-                    <ProductImg>
+                <Product onClick={ goDetail }>
+                    <ProductImg src={ BookImg }>
 
                     </ProductImg>
                     <ProductDec>
-                        <p>a</p>
+                        <TitleP>title</TitleP>
+                        <DateP>date</DateP>
+                        <PriceP>price</PriceP>
                     </ProductDec>
                 </Product>
-                <Product>
-                    <ProductImg>
+                <Product onClick={ goDetail }>
+                    <ProductImg src={ BookImg }>
 
                     </ProductImg>
                     <ProductDec>
-                        <p>a</p>
+                        <TitleP>title</TitleP>
+                        <DateP>date</DateP>
+                        <PriceP>price</PriceP>
                     </ProductDec>
                 </Product>
-                <Product>
-                    <ProductImg>
+                <Product onClick={ goDetail }>
+                    <ProductImg src={ BookImg }>
 
                     </ProductImg>
                     <ProductDec>
-                        <p>a</p>
+                        <TitleP>title</TitleP>
+                        <DateP>date</DateP>
+                        <PriceP>price</PriceP>
                     </ProductDec>
                 </Product>
-                <Product>
-                    <ProductImg>
+                <Product onClick={ goDetail }>
+                    <ProductImg src={ BookImg }>
 
                     </ProductImg>
                     <ProductDec>
-                        <p>a</p>
+                        <TitleP>title</TitleP>
+                        <DateP>date</DateP>
+                        <PriceP>price</PriceP>
                     </ProductDec>
                 </Product>
-                <Product>
-                    <ProductImg>
+                <Product onClick={ goDetail }>
+                    <ProductImg src={ BookImg }>
 
                     </ProductImg>
                     <ProductDec>
-                        <p>a</p>
+                        <TitleP>title</TitleP>
+                        <DateP>date</DateP>
+                        <PriceP>price</PriceP>
                     </ProductDec>
                 </Product>
-                <Product>
-                    <ProductImg>
+                <Product onClick={ goDetail }>
+                    <ProductImg src={ BookImg }>
 
                     </ProductImg>
                     <ProductDec>
-                        <p>a</p>
+                        <TitleP>title</TitleP>
+                        <DateP>date</DateP>
+                        <PriceP>price</PriceP>
                     </ProductDec>
                 </Product>
-                <Product>
-                    <ProductImg>
+                <Product onClick={ goDetail }>
+                    <ProductImg src={ BookImg }>
 
                     </ProductImg>
                     <ProductDec>
-                        <p>a</p>
+                        <TitleP>title</TitleP>
+                        <DateP>date</DateP>
+                        <PriceP>price</PriceP>
+                    </ProductDec>
+                </Product>
+                <Product onClick={ goDetail }>
+                    <ProductImg src={ BookImg }>
+
+                    </ProductImg>
+                    <ProductDec>
+                        <TitleP>title</TitleP>
+                        <DateP>date</DateP>
+                        <PriceP>price</PriceP>
+                    </ProductDec>
+                </Product>
+                <Product onClick={ goDetail }>
+                    <ProductImg src={ BookImg }>
+
+                    </ProductImg>
+                    <ProductDec>
+                        <TitleP>title</TitleP>
+                        <DateP>date</DateP>
+                        <PriceP>price</PriceP>
+                    </ProductDec>
+                </Product>
+                <Product onClick={ goDetail }>
+                    <ProductImg src={ BookImg }>
+
+                    </ProductImg>
+                    <ProductDec>
+                        <TitleP>title</TitleP>
+                        <DateP>date</DateP>
+                        <PriceP>price</PriceP>
+                    </ProductDec>
+                </Product>
+                <Product onClick={ goDetail }>
+                    <ProductImg src={ BookImg }>
+
+                    </ProductImg>
+                    <ProductDec>
+                        <TitleP>title</TitleP>
+                        <DateP>date</DateP>
+                        <PriceP>price</PriceP>
+                    </ProductDec>
+                </Product>
+                <Product onClick={ goDetail }>
+                    <ProductImg src={ BookImg }>
+
+                    </ProductImg>
+                    <ProductDec>
+                        <TitleP>title</TitleP>
+                        <DateP>date</DateP>
+                        <PriceP>price</PriceP>
                     </ProductDec>
                 </Product>
             </ProductList>
@@ -169,22 +256,41 @@ const ProductList = styled.div`
 `;
 
 const Product = styled.div`
-    width:28vh;
+    width:45vh;
     height:100%;
-    border:1px solid #000;
     margin-top:15px;
     margin-left:15px;
     display:flex;
     flex-direction:column;
+    cursor: pointer;
 `;
 
 const ProductImg = styled.img`
-    width:28vh;
-    height:150px;
+    width:45vh;
+    height:60vh;
     z-index:1;
 `;
 
 const ProductDec = styled.div`
     display:flex;
-    justify-content:center;
+    flex-direction: column;
+`;
+
+const TitleP = styled.p`
+    margin:0;
+    margin-left:5px;
+    font-size:20px;
+    font-weight:bolder;
+`;
+
+const DateP = styled.p`
+    margin:5px;
+    color: #74747B;
+    font-weight: bolder;
+`;
+
+const PriceP = styled.p`
+    margin:0;
+    margin-left:5px;
+    color: #74747B;
 `;
