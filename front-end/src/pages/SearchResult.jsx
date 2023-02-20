@@ -28,7 +28,7 @@ const SearchResult = () => {
             };
             try {
                 await axios
-                    .get(" http://localhost:8080/api/products/search", config)
+                    .get(" http://3.37.190.145:8080/api/products/search", config)
                     .then((res) => {
                         console.log("호출합니다.");
                         console.log(res);

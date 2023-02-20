@@ -21,7 +21,7 @@ const Login = () => {
     async function onSubmit() {
         try {     
             await axios
-            .post(" http://localhost:8080/api/members/login", {
+            .post(" http://3.37.190.145:8080/api/members/login", {
                 username:userId,
                 password:password,
             })

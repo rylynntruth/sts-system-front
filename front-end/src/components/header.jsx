@@ -11,6 +11,8 @@ const Header = () => {
 
     if (locationNow.pathname === "/signUp") return undefined;
 
+    if (locationNow.pathname === "/Event") return undefined;
+
     const goMain = () => {
         navigate("/");
     }
