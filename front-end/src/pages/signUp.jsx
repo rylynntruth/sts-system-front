@@ -24,8 +24,8 @@ const SignUp = () => {
             try {
                 await axios({
                     method: 'post',
-                    url: 'https://api.spaceodessey.store/api/members/signup',
-                    data:{ username:"ryua12356", password:"abcd1234!@", address:"ulsan"}
+                    url: 'https://api.whitenation.shop/api/members/signup',
+                    data:{ username:"ryub12356", password:"abcd1234!@", address:"ulsan"}
                 }).then((res) => {
                     console.log(res);
                     alert('회원가입이 완료되었습니다.');
