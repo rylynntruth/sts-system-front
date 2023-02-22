@@ -24,7 +24,7 @@ const SignUp = () => {
             try {
                 await axios({
                     method: 'post',
-                    url: 'https://api.whitenation.shop/api/members/signup',
+                    url: 'https://api.spaceodessey.store/api/members/signup',
                     data:{ username:"ryub12356", password:"abcd1234!@", address:"ulsan"}
                 }).then((res) => {
                     console.log(res);
