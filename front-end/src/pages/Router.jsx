@@ -14,6 +14,9 @@ import DomesticSearch from "./domesticSearch";
 import ForeignSearch from "./foreignSearch";
 import BestsellerSearch from "./bestsellerSearch";
 import EbookSearch from "./ebookSearch";
+import EnterPage from "./enterPage";
+import MainApp from "./mainApp";
+import SearchTab from "./searchTab";
 
 const Router = () => {
     const [loading, setLoading] = useState(false)
@@ -43,7 +46,7 @@ const Router = () => {
             <React.Suspense fallback={<Loading loading={loading}/>}>
                 <Header />
                 <Routes>
-                    <Route exact path="/" element={<MainSearch />} />
+                    <Route exact path="/mainSearch" element={<MainSearch />} />
                     <Route path="/Search" element={<SearchResult />} />
                     <Route path="/Event" element={<EventPage />} />
                     <Route path="/Search/ProductDetail" element={<ProductDetail />} />
@@ -59,6 +62,9 @@ const Router = () => {
                     <Route path="/foreignSearch/ProductDetail" element={<ProductDetail />} />
                     <Route path="/ebookSearch" element={<EbookSearch />} />
                     <Route path="/ebookSearch/ProductDetail" element={<ProductDetail />} />
+                    <Route path="/" element={<EnterPage />} />
+                    <Route path="/mainApp" element={<MainApp />} />
+                    <Route path="/searchTab" element={<SearchTab />} />
                 </Routes>
             </React.Suspense>
         </BrowserRouter>

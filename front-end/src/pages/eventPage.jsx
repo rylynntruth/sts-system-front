@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import backArrow from "../img/backArrow2.png"
+import backArrow from "../img/backX.png"
 
 const EventPage = () => {
     const navigate = useNavigate();
 
     const goBack = () => {
-        navigate("/");
+        navigate("/mainApp");
     };
 
     return (
@@ -30,7 +30,7 @@ const EventHeader = styled.div`
 `;
 
 const BackArrow = styled.img`
-    width:10vh;
-    height:10vh;
+    width:7vh;
+    height:7vh;
     cursor: pointer;
 `;

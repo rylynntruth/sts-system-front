@@ -19,7 +19,11 @@ const Login = () => {
     };
 
     async function onSubmit() {
-        try {     
+        if (!userId.trim() || !password.trim()) {
+            alert("아이디와 비밀번호를 입력해주세요.");
+            return;
+        }
+        try {
             await axios
             .post(" https://api.whitenation.shop/api/members/login", {
                 username:userId,
@@ -32,8 +36,13 @@ const Login = () => {
                 );
                 console.log(res);
             });
-            navigate(`/`);
+            navigate(`/mainApp`);
         } catch (error) {
+            if (error.response && error.response.status === 400) {
+                alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
+            } else {
+                alert("잠시뒤에 다시 시도해주세요.");
+            }
         }
     }
 

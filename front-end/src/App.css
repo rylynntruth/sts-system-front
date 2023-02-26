@@ -55,3 +55,11 @@
   left: calc(50% - 75px);
   position: fixed;
 }
+
+.error {
+  color: red;
+  font-weight:bolder;
+}
+.success {
+  color: black;
+}
