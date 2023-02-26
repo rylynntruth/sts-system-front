@@ -13,56 +13,49 @@ const Header = () => {
 
     if (locationNow.pathname === "/Event") return undefined;
 
-    const goMain = () => {
-        navigate("/");
-    }
+    if (locationNow.pathname === "/" || locationNow.pathname === "/searchTab") return undefined;
 
-    const goEvent = () => {
-        navigate("/Event");
+    const goMain = () => {
+        navigate("/mainApp");
     }
 
     const categorySearch = () => {
-        navigate("/CategorySearch");
+        navigate("/mainSearch");
     }
 
     const domesticSearch = () => {
-        navigate("/DomesticSearch");
-    }
-
-    const foreignSearch = () => {
-        navigate("/foreignSearch");
-    }
-
-    const bestsellerSearch = () => {
         navigate("/bestsellerSearch");
     }
 
-    const ebookSearch = () => {
-        navigate("/ebookSearch");
+    const foreignSearch = () => {
+        navigate("/Event");
     }
 
-    const goLogin = () => {
-        navigate("/Login");
+    const ebookSearch = () => {
+        navigate("/mainApp");
+    }
+
+    const goLoginout = () => {
+        const authorization = localStorage.getItem('Authorization');
+        localStorage.clear(authorization);
+        navigate('/');
     }
 
     return(
         <>
         <Wrapper>
-            <Menu1 onClick={ goLogin }>로그인</Menu1>
+            <Menu1 onClick={ goLoginout }>로그아웃</Menu1>
             <Menu1>마이페이지</Menu1>
-            <Menu1>고객센터</Menu1>
         </Wrapper>
         <MenuWrapper>
             <LogoContainer>
                 <Logo src={ LogoImg } onClick={ goMain } />
             </LogoContainer>
             <MenuContainer>
-                <MenuBanner1 onClick={ categorySearch }>HOME</MenuBanner1>
-                <MenuBanner1 onClick={ domesticSearch }>국내도서</MenuBanner1>
-                <MenuBanner1 onClick={ foreignSearch }>해외도서</MenuBanner1>
-                <MenuBanner1 onClick={ ebookSearch }>E-BOOK</MenuBanner1>
-                <MenuBanner1 onClick={ bestsellerSearch }>베스트셀러</MenuBanner1>
-                <MenuBanner1 onClick={ goEvent }>이벤트</MenuBanner1>
+                <MenuBanner1 onClick={ categorySearch }>검색</MenuBanner1>
+                <MenuBanner1 onClick={ domesticSearch }>주문</MenuBanner1>
+                <MenuBanner1 onClick={ foreignSearch }>실시간</MenuBanner1>
+                <MenuBanner1 onClick={ ebookSearch }>추가예정</MenuBanner1>
             </MenuContainer>
         </MenuWrapper>
         </>

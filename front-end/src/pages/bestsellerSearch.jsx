@@ -18,9 +18,60 @@ const BestsellerSearch = () => {
                 <TitleBox>
                     <p>베스트셀러</p>
                 </TitleBox>
-                <BannerBox>
-                    <p>Banner</p>
-                </BannerBox>
+                <TitleBox>
+                    <p>국내도서</p>
+                </TitleBox>
+                <TitleBox>
+                    <p>해외도서</p>
+                </TitleBox>
+                <TitleBox>
+                    <p>e-book</p>
+                </TitleBox>
+                <TitleBox>
+                    <p>인문</p>
+                </TitleBox>
+                <TitleBox>
+                    <p>사회</p>
+                </TitleBox>
+                <TitleBox>
+                    <p>과학</p>
+                </TitleBox>
+                <TitleBox>
+                    <p>문학</p>
+                </TitleBox>
+                <TitleBox>
+                    <p>에세이</p>
+                </TitleBox>
+                <TitleBox>
+                    <p>자기계발</p>
+                </TitleBox>
+                <TitleBox>
+                    <p>수험서</p>
+                </TitleBox>
+                <TitleBox>
+                    <p>어린이</p>
+                </TitleBox>
+                <TitleBox>
+                    <p>종교</p>
+                </TitleBox>
+                <TitleBox>
+                    <p>역사</p>
+                </TitleBox>
+                <TitleBox>
+                    <p>경제경영</p>
+                </TitleBox>
+                <TitleBox>
+                    <p>여행</p>
+                </TitleBox>
+                <TitleBox>
+                    <p>예술</p>
+                </TitleBox>
+                <TitleBox>
+                    <p>외국어</p>
+                </TitleBox>
+                <TitleBox>
+                    <p>건강</p>
+                </TitleBox>
             </Banner>
             <ProductList>
                 <Product onClick={ goDetail }>
@@ -116,11 +167,4 @@ const TitleBox = styled.div`
     justify-content:center;
     align-items:center;
     border-bottom:3px solid #ddd;
-`;
-
-const BannerBox = styled.div`
-    margin-top:15px;
-    width:40vh;
-    height:60vh;
-    border:1px solid #ddd;
 `;

@@ -17,11 +17,15 @@ const MainSearch = () => {
         }
     };
 
+    const goSearchTab = () => {
+        navigate("/searchTab");
+    }
+
     return (
     <>
     <InputSearch>
         <InputBox type="text" 
-        onKeyPress={searchText} 
+        onClick={ goSearchTab }
         placeholder="검색어를 입력해주세요." 
         value={ name }
         onChange={(event) => setName(event.target.value)}
