@@ -45,19 +45,24 @@ const SearchTab = () => {
                         검색모드설정
                     </HeaderTitle>
                 </ContentHeader>
+                <ModeContainer>
+                    <ModeLabel><ModeRadio type="radio" name="mode" value="like"/>LIKE</ModeLabel>
+                    <ModeLabel><ModeRadio type="radio" name="mode" value="full"/>FULL TEXT INDEX</ModeLabel>
+                    <ModeLabel><ModeRadio type="radio" name="mode" value="redis"/>Redis Cache</ModeLabel>
+                </ModeContainer>
             </Content>
             <Content>
                 <ContentHeader>
-                    <HeaderTitle>
-                        캐싱된검색어
-                    </HeaderTitle>
+                    <HeaderTitle1>
+                        Cache 검색어
+                    </HeaderTitle1>
                 </ContentHeader>
             </Content>
             <Content>
                 <ContentHeader>
-                    <HeaderTitle>
-                        캐싱안된검색어
-                    </HeaderTitle>
+                    <HeaderTitle2>
+                        Normal 검색어
+                    </HeaderTitle2>
                 </ContentHeader>
             </Content>
         </ContentContainer>
@@ -75,8 +80,8 @@ const SearchHeader = styled.div`
 `;
 
 const BackArrow = styled.img`
-    width:5vh;
-    height:5vh;
+    width:7vh;
+    height:7vh;
     cursor: pointer;
 `;
 
@@ -147,4 +152,38 @@ const HeaderTitle = styled.h1`
     margin-left:20px;
     color:#000;
     font-size:3vh;
+`;
+
+const HeaderTitle1 = styled.h1`
+    margin-left:20px;
+    color:#00d47b;
+    font-size:3vh;
+    font-weight:bolder;
+`;
+
+const HeaderTitle2 = styled.h1`
+    margin-left:20px;
+    color:#0091FA;
+    font-size:3vh;
+    font-weight:bolder;
+`;
+
+const ModeContainer = styled.div`
+    width:100%;
+    height:75vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-evenly;
+    align-items:left;
+`;
+
+const ModeRadio = styled.input`
+    width:5vh;
+    height:3vh;
+`;
+
+const ModeLabel = styled.label`
+    font-size:35px;
+    font-weight:bolder;
+    color:#FF9900;
 `;

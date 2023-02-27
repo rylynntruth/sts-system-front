@@ -7,16 +7,6 @@ const MainSearch = () => {
     const navigate = useNavigate();
     const [name,setName] = useState("");
 
-    const searchText = (e) => {
-        if(e.key === 'Enter') {
-            navigate("/Search", {
-                state: {
-                    name: name
-                }
-            });
-        }
-    };
-
     const goSearchTab = () => {
         navigate("/searchTab");
     }

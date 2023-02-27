@@ -11,7 +11,7 @@ const Header = () => {
 
     if (locationNow.pathname === "/signUp") return undefined;
 
-    if (locationNow.pathname === "/Event") return undefined;
+    if (locationNow.pathname === "/Event" || locationNow.pathname === "/eventBanner") return undefined;
 
     if (locationNow.pathname === "/" || locationNow.pathname === "/searchTab") return undefined;
 
