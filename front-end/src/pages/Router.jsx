@@ -17,6 +17,7 @@ import EbookSearch from "./ebookSearch";
 import EnterPage from "./enterPage";
 import MainApp from "./mainApp";
 import SearchTab from "./searchTab";
+import EventBanner from "./eventBanner";
 
 const Router = () => {
     const [loading, setLoading] = useState(false)
@@ -65,6 +66,7 @@ const Router = () => {
                     <Route path="/" element={<EnterPage />} />
                     <Route path="/mainApp" element={<MainApp />} />
                     <Route path="/searchTab" element={<SearchTab />} />
+                    <Route path="/eventBanner" element={<EventBanner />} />
                 </Routes>
             </React.Suspense>
         </BrowserRouter>
