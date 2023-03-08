@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import backArrow from "../img/backX.png"
@@ -7,12 +7,18 @@ import search from "../img/search.png";
 const SearchTab = () => {
     const navigate = useNavigate();
     const [name,setName] = useState("");
+    const [selectData,setSelectData] = useState("read");
 
     const searchText = (e) => {
         if(e.key === 'Enter') {
+            if (name.trim() === "") {
+                alert("검색어를 입력해주세요.");
+                return;
+            }
             navigate("/Search", {
                 state: {
-                    name: name
+                    name: name,
+                    selectData: selectData
                 }
             });
         }
@@ -20,6 +26,24 @@ const SearchTab = () => {
 
     const goBack = () => {
         navigate("/mainSearch");
+    };
+
+    const goCache = (keyword) => {
+        navigate("/KeyWordSearchResult", {
+            state: {
+                name: keyword,
+                selectData: "cache"
+            }
+        });
+    };
+
+    const goNormal = (keyword) => {
+        navigate("/KeyWordSearchResult", {
+            state: {
+                name: keyword,
+                selectData: "normal"
+            }
+        });
     };
 
     return (
@@ -46,9 +70,14 @@ const SearchTab = () => {
                     </HeaderTitle>
                 </ContentHeader>
                 <ModeContainer>
-                    <ModeLabel><ModeRadio type="radio" name="mode" value="like"/>LIKE</ModeLabel>
-                    <ModeLabel><ModeRadio type="radio" name="mode" value="full"/>FULL TEXT INDEX</ModeLabel>
-                    <ModeLabel><ModeRadio type="radio" name="mode" value="redis"/>Redis Cache</ModeLabel>
+                    <ModeLabel><ModeRadio type="radio" name="mode" value="like"
+                    onChange={(e) => setSelectData(e.target.value)}/>LIKE(데이터 200만)</ModeLabel>
+                    <ModeLabel><ModeRadio type="radio" name="mode" value="full"
+                    onChange={(e) => setSelectData(e.target.value)}/>FULL TEXT INDEX(500만)</ModeLabel>
+                    <ModeLabel><ModeRadio type="radio" name="mode" value="read"
+                    onChange={(e) => setSelectData(e.target.value)} defaultChecked/>Redis read through (1000만)</ModeLabel>
+                    <ModeLabel><ModeRadio type="radio" name="mode" value="look"
+                    onChange={(e) => setSelectData(e.target.value)}/>Redis look aside (1000만)</ModeLabel>
                 </ModeContainer>
             </Content>
             <Content>
@@ -57,6 +86,32 @@ const SearchTab = () => {
                         Cache 검색어
                     </HeaderTitle1>
                 </ContentHeader>
+                <CacheContainer>
+                    <CacheRow1>
+                        <CacheP onClick={() => goCache("Federic")}>Federic</CacheP>
+                        <CacheP onClick={() => goCache("Levi")}>Levi</CacheP>
+                        <CacheP onClick={() => goCache("Victor")}>Victor</CacheP>
+                        <CacheP onClick={() => goCache("Robbie")}>Robbie</CacheP>
+                        <CacheP onClick={() => goCache("Jeffery")}>Jeffery</CacheP>
+                        <CacheP onClick={() => goCache("Isaac")}>Isaac</CacheP>
+                        <CacheP onClick={() => goCache("Monika")}>Monika</CacheP>
+                        <CacheP onClick={() => goCache("Jade")}>Jade</CacheP>
+                        <CacheP onClick={() => goCache("Harber")}>Harber</CacheP>
+                        <CacheP onClick={() => goCache("Matthew")}>Matthew</CacheP>
+                    </CacheRow1>
+                    <CacheRow2>
+                        <CacheP onClick={() => goCache("Gayle")}>Gayle</CacheP>
+                        <CacheP onClick={() => goCache("Ami")}>Ami</CacheP>
+                        <CacheP onClick={() => goCache("Paris")}>Paris</CacheP>
+                        <CacheP onClick={() => goCache("Shenna")}>Shenna</CacheP>
+                        <CacheP onClick={() => goCache("Celia")}>Celia</CacheP>
+                        <CacheP onClick={() => goCache("Ted")}>Ted</CacheP>
+                        <CacheP onClick={() => goCache("Elicia")}>Elicia</CacheP>
+                        <CacheP onClick={() => goCache("Debora")}>Debora</CacheP>
+                        <CacheP onClick={() => goCache("Coy")}>Coy</CacheP>
+                        <CacheP onClick={() => goCache("Violette")}>Violette</CacheP>
+                    </CacheRow2>
+                </CacheContainer>
             </Content>
             <Content>
                 <ContentHeader>
@@ -64,6 +119,32 @@ const SearchTab = () => {
                         Normal 검색어
                     </HeaderTitle2>
                 </ContentHeader>
+                <NormalContainer>
+                    <NormalRow1>
+                        <NormalP onClick={() => goNormal("gaylord")}>gaylord</NormalP>
+                        <NormalP onClick={() => goNormal("maria")}>maria</NormalP>
+                        <NormalP onClick={() => goNormal("marni")}>marni</NormalP>
+                        <NormalP onClick={() => goNormal("clint")}>clint</NormalP>
+                        <NormalP onClick={() => goNormal("derrick")}>derrick</NormalP>
+                        <NormalP onClick={() => goNormal("octavio")}>octavio</NormalP>
+                        <NormalP onClick={() => goNormal("vicenta")}>vicenta</NormalP>
+                        <NormalP onClick={() => goNormal("brain")}>brain</NormalP>
+                        <NormalP onClick={() => goNormal("delorse")}>delorse</NormalP>
+                        <NormalP onClick={() => goNormal("feil")}>feil</NormalP>
+                    </NormalRow1>
+                    <NormalRow2>
+                        <NormalP onClick={() => goNormal("forest")}>forest</NormalP>
+                        <NormalP onClick={() => goNormal("refugio")}>refugio</NormalP>
+                        <NormalP onClick={() => goNormal("senaida")}>senaida</NormalP>
+                        <NormalP onClick={() => goNormal("ryan")}>ryan</NormalP>
+                        <NormalP onClick={() => goNormal("ezra")}>ezra</NormalP>
+                        <NormalP onClick={() => goNormal("columbus")}>columbus</NormalP>
+                        <NormalP onClick={() => goNormal("dominga")}>dominga</NormalP>
+                        <NormalP onClick={() => goNormal("miguel")}>miguel</NormalP>
+                        <NormalP onClick={() => goNormal("langworth")}>langworth</NormalP>
+                        <NormalP onClick={() => goNormal("jaskolski")}>jaskolski</NormalP>
+                    </NormalRow2>
+                </NormalContainer>
             </Content>
         </ContentContainer>
         </>
@@ -183,7 +264,79 @@ const ModeRadio = styled.input`
 `;
 
 const ModeLabel = styled.label`
-    font-size:35px;
+    font-size:25px;
     font-weight:bolder;
     color:#FF9900;
+`;
+
+const CacheContainer = styled.div`
+    width:100%;
+    height:75vh;
+    display:flex;
+    flex-direction:row;
+`;
+
+const CacheRow1 = styled.div`
+    width:50%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    border-right:1px solid #000;
+`;
+
+const CacheRow2 = styled.div`
+    width:50%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+`;
+
+const NormalContainer = styled.div`
+    width:100%;
+    height:75vh;
+    display:flex;
+    flex-direction:row;
+`;
+
+const NormalRow1 = styled.div`
+    width:50%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    border-right:1px solid #000;
+`;
+
+const NormalRow2 = styled.div`
+    width:50%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+`;
+
+const CacheP = styled.p`
+    font-size:12px;
+    color:#000;
+    margin-left:20px;
+    font-weight:bolder;
+    cursor:pointer;
+`;
+
+const NormalP = styled.p`
+    font-size:12px;
+    color:#000;
+    margin-left:20px;
+    font-weight:bolder;
+    cursor:pointer;
 `;

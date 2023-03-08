@@ -2,9 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import backArrow from "../img/backX.png"
-import banner from "../img/bannerCon1.png"
 
-const EventBanner = () => {
+const EventBanner2 = () => {
     const navigate = useNavigate();
 
     const goBack = () => {
@@ -18,7 +17,7 @@ const EventBanner = () => {
             </BackArrow>
         </BannerHeader>
         <BannerContainer>
-            <BannerCenter src= { banner }>
+            <BannerCenter>
 
             </BannerCenter>
         </BannerContainer>
@@ -26,7 +25,7 @@ const EventBanner = () => {
     );
 };
 
-export default EventBanner;
+export default EventBanner2;
 
 const BannerHeader = styled.div`
     width: 100%;
@@ -52,7 +51,7 @@ const BannerContainer = styled.div`
     align-items: center;
 `;
 
-const BannerCenter = styled.img`
+const BannerCenter = styled.div`
     width: 100vh;
     height: 150vh;
     border:1px solid #ddd;

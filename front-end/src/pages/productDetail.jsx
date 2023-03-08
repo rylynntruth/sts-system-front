@@ -1,40 +1,128 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import BookImg from "../img/book_test.jpeg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 const ProductDetail = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const id = location.state.id;
+
+    const [productDetail, setProductDetail] = useState("");
+
+    const goCart = (id) => {
+            try {
+                axios
+                .post("https://api.spaceodessey.store/api/products/cart/"+id, {},{ headers: {
+                    Authorization: localStorage.getItem("Authorization")
+                }})
+                .then((res) => {
+                        console.log(res);
+                        alert("장바구니에 추가되었습니다.");
+                });
+            } catch (error) {
+                console.log(error);
+                alert("잠시뒤에 시도해주세요.")
+            }
+    };
+
+    const pessimisticOrder = (id) => {
+        try {
+            axios
+                .post("https://api.spaceodessey.store/api/products/order-one/pessimisticLock", {
+                    productId: id,
+                    quantity: 1,
+                    dcType:"none",
+                    discount: 0
+                },{ headers: {
+                    Authorization: localStorage.getItem("Authorization")
+                }})
+                .then((res) => {
+                    console.log(res);
+                    alert("주문되었습니다(pessimistic).");
+                    window.location.reload();
+                });
+        } catch (error) {
+            console.log(error);
+            alert("잠시뒤에 시도해주세요.");
+        }
+    }
+
+    const reddisonOrder = (id) => {
+        try {
+            axios
+            .post("https://api.spaceodessey.store/api/products/order-one/redissonLock", {
+                productId: id,
+                quantity: 1,
+                dcType:"none",
+                discount: 0
+            },{ headers: {
+                Authorization: localStorage.getItem("Authorization")
+            }})
+            .then((res) => {
+                    console.log(res);
+                    alert("주문되었습니다(reddison).");
+                    window.location.reload();
+            });
+        } catch (error) {
+            console.log(error);
+            alert("잠시뒤에 시도해주세요.");
+        }
+    }
+
+    useEffect(() => {
+        async function searchData() {
+            let page = 0;
+            const config = {
+                params: { page: page },
+                headers: {
+                    Authorization: localStorage.getItem("Authorization"),
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json'
+                }
+            };
+            try {
+                await axios
+                    .get("https://api.spaceodessey.store/api/products/"+id, config)
+                    .then((res) => {
+                        console.log(res);         
+                        setProductDetail(res.data);
+                });
+            } catch (error) {
+                console.log(error);
+            }
+
+        }
+        searchData();
+    }, []);
 
     return(
         <>
-        <BannerContainer>
-            <p>BANNER</p>
-        </BannerContainer>
-        <CategoryContainer>
-            <p>CATEGORY</p>
-        </CategoryContainer>
         <DetailContainer>
-            <DetailBanner>
-                Banner
-            </DetailBanner>
             <DetailImgDiv>
-                <DetailImg src={ BookImg }>
-
-                </DetailImg>
+                <DetailImg src={ localStorage.getItem("img"+productDetail.imgurl+"_s3") }/>
             </DetailImgDiv>
             <DetailDescriptionDiv>
                 <TitleDescriptionDiv>
-                    <Title>Title</Title>
-                    <Description>설명</Description>
+                    <Title>{productDetail.name}</Title>
+                    <Description>{productDetail.description}</Description>
                 </TitleDescriptionDiv>
                 <PriceDiv>
-                    <Price>가격 : 10000원</Price>
+                    <Price>{productDetail.price}원</Price>
                 </PriceDiv>
+                <DetailDiv>
+                    <Date>발행일 : {productDetail.date}</Date>
+                    <Order>주문수 : {productDetail.orderCount} </Order>
+                    <Stock>재고수 : {productDetail.stock}</Stock>
+                    <Page>페이지 : {productDetail.pages}</Page>
+                    <Introduction>소개 : {productDetail.introduction}</Introduction>
+                </DetailDiv>
             </DetailDescriptionDiv>
-            <RightBanner>
-                Banner
-            </RightBanner>
+            <ButtonDiv>
+                <CartButton onClick={ () => goCart(productDetail.id) }>장바구니로</CartButton>
+                <OrderButton onClick={ () => pessimisticOrder(productDetail.id) }>주문하기(pessimistic)</OrderButton>
+                <OrderButton onClick={ () => reddisonOrder(productDetail.id) } style={{borderColor:"red", color:"red"}}>주문하기(reddison)</OrderButton>
+            </ButtonDiv>
         </DetailContainer>
         </>
     );    
@@ -42,65 +130,37 @@ const ProductDetail = () => {
 
 export default ProductDetail;
 
-const BannerContainer = styled.div`
-    width:100%;
-    height:10vh;
-    border:1px solid #ddd;
-    display:flex;
-    justify-content:center;
-    align-items: center;
-`;
-
-const CategoryContainer = styled.div`
-    width:100%;
-    height:7vh;
-    border:1px solid #74747B;
-    display:flex;
-    align-items: center;
-`;
-
 const DetailContainer = styled.div`
-    width:100%;
+    width:100vw;
     height:100%;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
     margin-top:35px;
 `;
 
-const DetailBanner = styled.div`
-    width:45vh;
-    height:30px;
-    border:1px solid #ddd;
-    margin-left:10px;
-`;
-
 const DetailImgDiv = styled.div`
-    width:130vh;
+    width:100%;
     height:100%;
-    margin-left:10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 const DetailDescriptionDiv = styled.div`
     width:100%;
     height:100%;
-    border:1px solid #ddd;
     margin-left:20px;
     display:flex;
+    justify-content:center;
+    align-items:center;
     flex-direction:column;
 `;
 
-const RightBanner = styled.div`
-    width:45vh;
-    height:30px;
-    border:1px solid #ddd;
-    margin-left:10px;
-    margin-right:10px;
-`;
-
 const DetailImg = styled.img`
-    width:100%;
-    height:80vh;
+    width:25vw;
+    height:70vh;
     border:none;
     box-shadow: 5px 5px 10px;
 `;
@@ -109,8 +169,8 @@ const TitleDescriptionDiv = styled.div`
     width:100%;
     height:100%;
     display:flex;
-    flex-direction:row;
-    border-bottom:1px solid #000;
+    justify-content:center;
+    align-items:center;
 `;
 
 const Title = styled.p`
@@ -121,6 +181,7 @@ const Title = styled.p`
 const Description = styled.p`
     margin-left:10px;
     font-size:20px;
+    font-weight:bolder;
     color:#666666;
 `;
 
@@ -129,9 +190,76 @@ const PriceDiv = styled.div`
     height:100%;
     display:flex;
     flex-direction:column;
-    border-bottom:1px solid #000;
+    justify-content:center;
+    align-items:center;
 `;
 
 const Price = styled.p`
+    font-size:20px;
+    color:#666666;
+`;
 
+const DetailDiv = styled.div`
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+`;
+
+const Date = styled.p`
+    font-size:15px;
+`;
+
+const Order = styled.p`
+    font-size:15px;
+`;
+
+const Stock = styled.p`
+    font-size:15px;
+`;
+
+const Page = styled.p`
+    font-size:15px;
+`;
+
+const Introduction = styled.p`
+    font-size:15px;
+`;
+
+const ButtonDiv = styled.div`
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-top:20px;
+    margin-bottom:20px;
+`;
+
+const CartButton = styled.button`
+    width:10vw;
+    height:5vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border:1px solid #000;
+    background-color:#fff;
+    font-weight:bolder;
+    cursor:pointer;
+`;
+
+const OrderButton = styled.button`
+    width:10vw;
+    height:5vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-left:10px;
+    color:#0078ff;
+    border:1px solid #0078ff;
+    background-color:#fff;
+    font-weight:bolder;
+    cursor:pointer;
 `;

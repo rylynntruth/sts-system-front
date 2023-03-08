@@ -130,7 +130,7 @@ const SignUp = () => {
                 try {
                     await axios({
                         method: 'post',
-                        url: 'https://api.whitenation.shop/api/members/signup',
+                        url: 'https://api.spaceodessey.store/api/members/signup',
                         data:{ username:userId, password:password, email:email, nickname:nickname}
                     }).then((res) => {
                         console.log(res);
@@ -155,7 +155,7 @@ const SignUp = () => {
                 }
                 await axios({
                     method: 'post',
-                    url: 'https://api.whitenation.shop/api/members/checkId',
+                    url: 'https://api.spaceodessey.store/api/members/checkId',
                     data:{ username:userId }
                 }).then((res) => {
                     console.log(res);

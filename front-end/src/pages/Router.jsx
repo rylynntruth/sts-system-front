@@ -5,7 +5,6 @@ import SearchResult from "./SearchResult";
 import Header from "../components/header";
 import EventPage from "./eventPage";
 import ProductDetail from "./productDetail";
-import CategorySearch from "./categorySearch";
 import Login from "./Login";
 import SignUp from "./signUp";
 import axios from "axios";
@@ -13,11 +12,15 @@ import Loading from "../components/loading";
 import DomesticSearch from "./domesticSearch";
 import ForeignSearch from "./foreignSearch";
 import BestsellerSearch from "./bestsellerSearch";
-import EbookSearch from "./ebookSearch";
 import EnterPage from "./enterPage";
 import MainApp from "./mainApp";
 import SearchTab from "./searchTab";
 import EventBanner from "./eventBanner";
+import EventBanner2 from "./eventBanner2";
+import EventBanner3 from "./eventBanner3";
+import CartList from "./cartList";
+import KeyWordSearchResult from "./keywordSearchResult";
+import MyPage from "./myPage";
 
 const Router = () => {
     const [loading, setLoading] = useState(false)
@@ -25,7 +28,7 @@ const Router = () => {
     useEffect(()=>{
         //axios 호출시 인터셉트
         axios.interceptors.request.use(function (config) {
-          if(config.url.includes('search') || config.url.includes('login')){
+          if(config.url.includes('search') || config.url.includes('login') || config.url.includes('/api/products/')){
             setLoading(true)
           }
           return config
@@ -51,7 +54,6 @@ const Router = () => {
                     <Route path="/Search" element={<SearchResult />} />
                     <Route path="/Event" element={<EventPage />} />
                     <Route path="/Search/ProductDetail" element={<ProductDetail />} />
-                    <Route path="/CategorySearch" element={<CategorySearch />} />
                     <Route path="/CategorySearch/ProductDetail" element={<ProductDetail />} />
                     <Route path="/Login" element={<Login />} />
                     <Route path="/signUp" element={<SignUp />} />
@@ -61,12 +63,16 @@ const Router = () => {
                     <Route path="/domesticSearch/ProductDetail" element={<ProductDetail />} />
                     <Route path="/foreignSearch" element={<ForeignSearch />} />
                     <Route path="/foreignSearch/ProductDetail" element={<ProductDetail />} />
-                    <Route path="/ebookSearch" element={<EbookSearch />} />
                     <Route path="/ebookSearch/ProductDetail" element={<ProductDetail />} />
                     <Route path="/" element={<EnterPage />} />
                     <Route path="/mainApp" element={<MainApp />} />
                     <Route path="/searchTab" element={<SearchTab />} />
                     <Route path="/eventBanner" element={<EventBanner />} />
+                    <Route path="/eventBanner2" element={<EventBanner2 />} />
+                    <Route path="/eventBanner3" element={<EventBanner3 />} />
+                    <Route path="/cartList" element={<CartList />} />
+                    <Route path="/KeyWordSearchResult" element={<KeyWordSearchResult />} />
+                    <Route path="/myPage" element={<MyPage />} />
                 </Routes>
             </React.Suspense>
         </BrowserRouter>

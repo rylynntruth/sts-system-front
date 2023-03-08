@@ -11,7 +11,7 @@ const Header = () => {
 
     if (locationNow.pathname === "/signUp") return undefined;
 
-    if (locationNow.pathname === "/Event" || locationNow.pathname === "/eventBanner") return undefined;
+    if (locationNow.pathname === "/Event" || locationNow.pathname === "/eventBanner" || locationNow.pathname === "/eventBanner2" || locationNow.pathname === "/eventBanner3") return undefined;
 
     if (locationNow.pathname === "/" || locationNow.pathname === "/searchTab") return undefined;
 
@@ -31,21 +31,26 @@ const Header = () => {
         navigate("/Event");
     }
 
-    const ebookSearch = () => {
-        navigate("/mainApp");
-    }
-
     const goLoginout = () => {
         const authorization = localStorage.getItem('Authorization');
         localStorage.clear(authorization);
         navigate('/');
     }
 
+    const goCart = () => {
+        navigate("/cartList");
+    }
+
+    const goMyPage = () => {
+        navigate("/myPage");
+    }
+
     return(
         <>
         <Wrapper>
             <Menu1 onClick={ goLoginout }>로그아웃</Menu1>
-            <Menu1>마이페이지</Menu1>
+            <Menu1 onClick={ goMyPage }>마이페이지</Menu1>
+            <Menu1 onClick= { goCart }>장바구니</Menu1>
         </Wrapper>
         <MenuWrapper>
             <LogoContainer>
@@ -55,7 +60,6 @@ const Header = () => {
                 <MenuBanner1 onClick={ categorySearch }>검색</MenuBanner1>
                 <MenuBanner1 onClick={ domesticSearch }>주문</MenuBanner1>
                 <MenuBanner1 onClick={ foreignSearch }>실시간</MenuBanner1>
-                <MenuBanner1 onClick={ ebookSearch }>추가예정</MenuBanner1>
             </MenuContainer>
         </MenuWrapper>
         </>
@@ -69,7 +73,7 @@ const Wrapper = styled.div`
     justify-content:flex-end;
     width:100%;
     height:30px;
-    font-size:14px;
+    font-size:12px;
     flex-flow:wrap;
     background-color:black;
 `;
@@ -111,6 +115,6 @@ const Logo = styled.img`
 const MenuBanner1 = styled.a`
     margin-right:3em;
     font-weight:bolder;
-    font-size:17px;
+    font-size:20px;
     cursor: pointer;
 `;

@@ -65,7 +65,7 @@ const ProductList = styled.div`
 `;
 
 const Product = styled.div`
-    width:45vh;
+    width:30vh;
     height:100%;
     margin-top:15px;
     margin-left:15px;
@@ -75,7 +75,7 @@ const Product = styled.div`
 `;
 
 const ProductImg = styled.img`
-    width:45vh;
+    width:30vh;
     height:60vh;
     z-index:1;
 `;
