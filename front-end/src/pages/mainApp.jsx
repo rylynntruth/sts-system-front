@@ -13,17 +13,17 @@ const MainApp = () => {
                 </AppHeader>
                 <Note>
                     <NoteHeader>
-                        <PnoteHeader>검색기능</PnoteHeader>
+                        <PnoteHeader>기능관련</PnoteHeader>
                     </NoteHeader>
                 </Note>
                 <Note>
                     <NoteHeader>
-                        <PnoteHeader>주문기능</PnoteHeader>
+                        <PnoteHeader>서버관련</PnoteHeader>
                     </NoteHeader>
                 </Note>
                 <Note>
                     <NoteHeader>
-                        <PnoteHeader>실시간처리기능</PnoteHeader>
+                        <PnoteHeader>기타</PnoteHeader>
                     </NoteHeader>
                 </Note>
             </AppContainer>

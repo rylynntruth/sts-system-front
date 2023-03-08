@@ -25,7 +25,7 @@ const Login = () => {
         }
         try {
             await axios
-            .post(" https://api.whitenation.shop/api/members/login", {
+            .post(" https://api.spaceodessey.store/api/members/login", {
                 username:userId,
                 password:password,
             })
@@ -35,6 +35,51 @@ const Login = () => {
                 res.headers.get("Authorization")
                 );
                 console.log(res);
+            });
+            await axios
+            .get("https://api.spaceodessey.store/api/members/img")
+            .then((res) => {
+                console.log(res);
+                localStorage.setItem("img"+0+"_id", res.data[0].img_id);
+                localStorage.setItem("img"+0+"_s3", res.data[0].img_s3);
+                localStorage.setItem("img"+1+"_id", res.data[1].img_id);
+                localStorage.setItem("img"+1+"_s3", res.data[1].img_s3);
+                localStorage.setItem("img"+2+"_id", res.data[2].img_id);
+                localStorage.setItem("img"+2+"_s3", res.data[2].img_s3);
+                localStorage.setItem("img"+3+"_id", res.data[3].img_id);
+                localStorage.setItem("img"+3+"_s3", res.data[3].img_s3);
+                localStorage.setItem("img"+4+"_id", res.data[4].img_id);
+                localStorage.setItem("img"+4+"_s3", res.data[4].img_s3);
+                localStorage.setItem("img"+5+"_id", res.data[5].img_id);
+                localStorage.setItem("img"+5+"_s3", res.data[5].img_s3);
+                localStorage.setItem("img"+6+"_id", res.data[6].img_id);
+                localStorage.setItem("img"+6+"_s3", res.data[6].img_s3);
+                localStorage.setItem("img"+7+"_id", res.data[7].img_id);
+                localStorage.setItem("img"+7+"_s3", res.data[7].img_s3);
+                localStorage.setItem("img"+8+"_id", res.data[8].img_id);
+                localStorage.setItem("img"+8+"_s3", res.data[8].img_s3);
+                localStorage.setItem("img"+9+"_id", res.data[9].img_id);
+                localStorage.setItem("img"+9+"_s3", res.data[9].img_s3);
+                localStorage.setItem("img"+10+"_id", res.data[10].img_id);
+                localStorage.setItem("img"+10+"_s3", res.data[10].img_s3);
+                localStorage.setItem("img"+11+"_id", res.data[11].img_id);
+                localStorage.setItem("img"+11+"_s3", res.data[11].img_s3);
+                localStorage.setItem("img"+12+"_id", res.data[12].img_id);
+                localStorage.setItem("img"+12+"_s3", res.data[12].img_s3);
+                localStorage.setItem("img"+13+"_id", res.data[13].img_id);
+                localStorage.setItem("img"+13+"_s3", res.data[13].img_s3);
+                localStorage.setItem("img"+14+"_id", res.data[14].img_id);
+                localStorage.setItem("img"+14+"_s3", res.data[14].img_s3);
+                localStorage.setItem("img"+15+"_id", res.data[15].img_id);
+                localStorage.setItem("img"+15+"_s3", res.data[15].img_s3);
+                localStorage.setItem("img"+16+"_id", res.data[16].img_id);
+                localStorage.setItem("img"+16+"_s3", res.data[16].img_s3);
+                localStorage.setItem("img"+17+"_id", res.data[17].img_id);
+                localStorage.setItem("img"+17+"_s3", res.data[17].img_s3);
+                localStorage.setItem("img"+18+"_id", res.data[18].img_id);
+                localStorage.setItem("img"+18+"_s3", res.data[18].img_s3);
+                localStorage.setItem("img"+19+"_id", res.data[19].img_id);
+                localStorage.setItem("img"+19+"_s3", res.data[19].img_s3);
             });
             navigate(`/mainApp`);
         } catch (error) {

@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import backArrow from "../img/backX.png"
+import banner1 from "../img/banner1.png"
+import banner2 from "../img/banner2.png"
 
 const EventPage = () => {
     const navigate = useNavigate();
@@ -14,6 +16,14 @@ const EventPage = () => {
         navigate("/eventBanner");
     }
 
+    const goBanner2 = () => {
+        navigate("/eventBanner2");
+    }
+
+    const goBanner3 = () => {
+        navigate("/eventBanner3");
+    }
+
     return (
         <>
         <EventHeader>
@@ -21,13 +31,13 @@ const EventPage = () => {
             </BackArrow>
         </EventHeader>
         <BannerContainer>
-            <Banner onClick={ goBanner }>
+            <Banner onClick={ goBanner } src={ banner2 }>
                 
             </Banner>
-            <Banner>
+            <Banner onClick={ goBanner2 } src= { banner1 }>
                 
             </Banner>
-            <Banner>
+            <Banner onClick={ goBanner3 }>
                 
             </Banner>
         </BannerContainer>
@@ -61,7 +71,7 @@ const BannerContainer = styled.div`
     flex-direction:column;
 `;
 
-const Banner = styled.div`
+const Banner = styled.img`
     width:80vh;
     height:20vh;
     border:1px solid #ddd;

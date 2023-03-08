@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
-const SearchResult = () => {
+const KeyWordSearchResult = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const name = location.state.name;
@@ -59,11 +59,29 @@ const SearchResult = () => {
                             setResponseTime(msToTime(res.data.totalTime));
                             setProduct(res.data.result.data);
                         });
-                } else {
+                } else if (selectData === "look"){
                     await axios
                         .get("https://api.spaceodessey.store/api/products/search/redis/cacheaside/"+name, config)
                         .then((res) => {                        
                             console.log("look 호출합니다.");
+                            setResponseTime(msToTime(res.data.totalTime));
+                            setProduct(res.data.result.data);
+                        });
+                } else if (selectData === "cache") {
+                    await axios
+                    .get("https://api.spaceodessey.store/api/products/search/cache/"+name, config)
+                    .then((res) => {                        
+                            console.log("cache 호출합니다.");
+                            console.log(res);
+                            setResponseTime(msToTime(res.data.totalTime));
+                            setProduct(res.data.result.data);
+                        });
+                } else {
+                    await axios
+                    .get("https://api.spaceodessey.store/api/products/search/normal/"+name, config)
+                    .then((res) => {                        
+                            console.log("normal 호출합니다.");
+                            console.log(res);
                             setResponseTime(msToTime(res.data.totalTime));
                             setProduct(res.data.result.data);
                         });
@@ -111,7 +129,7 @@ const SearchResult = () => {
 
 };
 
-export default SearchResult;
+export default KeyWordSearchResult;
 
 const SearchFrame = styled.div`
     width: 100%;

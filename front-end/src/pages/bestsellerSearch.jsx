@@ -1,89 +1,173 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import BookImg from "../img/book_test.jpeg";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const BestsellerSearch = () => {
     const navigate = useNavigate();
 
-    const goDetail = () => {
-        navigate("ProductDetail");
+    const [products, setProduct] = useState([]);
+
+    const goDetail = (id) => {
+        navigate("ProductDetail", {
+            state: {
+                id: id
+            }
+        });
     };
+
+    const goCart = () => {
+        navigate("/cartList");
+    }
+
+    const goBestSeller = (e) => {
+        let page = 0;
+        const config = {
+            params: { page: page },
+            headers: {
+                Authorization: localStorage.getItem("Authorization"),
+                'Content-Type': 'application/json',
+                Accept: 'application/json'
+            }
+        };
+        try {
+            axios
+                .get("https://api.spaceodessey.store/api/products/bestseller", config)
+                .then((res) => {               
+                    console.log(res);         
+                    console.log(res.data);
+                    setProduct(res.data);
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const goDomestic = (e) => {
+        let page = 0;
+        const config = {
+            params: { page: page },
+            headers: {
+                Authorization: localStorage.getItem("Authorization"),
+                'Content-Type': 'application/json',
+                Accept: 'application/json'
+            }
+        };
+        try {
+            axios
+                .get("https://api.spaceodessey.store/api/products/domestic", config)
+                .then((res) => {                        
+                    console.log(res.data);
+                    setProduct(res.data);
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const goForeign = (e) => {
+        let page = 0;
+        const config = {
+            params: { page: page },
+            headers: {
+                Authorization: localStorage.getItem("Authorization"),
+                'Content-Type': 'application/json',
+                Accept: 'application/json'
+            }
+        };
+        try {
+            axios
+                .get("https://api.spaceodessey.store/api/products/foreign", config)
+                .then((res) => {                        
+                    console.log(res.data);
+                    setProduct(res.data);
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const goEbook = (e) => {
+        let page = 0;
+        const config = {
+            params: { page: page },
+            headers: {
+                Authorization: localStorage.getItem("Authorization"),
+                'Content-Type': 'application/json',
+                Accept: 'application/json'
+            }
+        };
+        try {
+            axios
+                .get("https://api.spaceodessey.store/api/products/ebook", config)
+                .then((res) => {                        
+                    console.log(res.data);
+                    setProduct(res.data);
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        async function searchData() {
+            let page = 0;
+            const config = {
+                params: { page: page },
+                headers: {
+                    Authorization: localStorage.getItem("Authorization"),
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json'
+                }
+            };
+            try {
+                await axios
+                    .get("https://api.spaceodessey.store/api/products/bestseller", config)
+                    .then((res) => {                        
+                        console.log(res.data);
+                        setProduct(res.data);
+                });
+            } catch (error) {
+                console.log(error);
+            }
+
+        }
+        searchData();
+    }, []);
 
     return (
         <>
         <MenuWrap>
             <Banner>
                 <TitleBox>
+                    <p style={{color:"red",fontWeight:"bolder"}} onClick={ goCart }>장바구니로</p>
+                </TitleBox>
+                <TitleBox onClick={() => goBestSeller()}>
                     <p>베스트셀러</p>
                 </TitleBox>
-                <TitleBox>
+                <TitleBox onClick={() => goDomestic()}>
                     <p>국내도서</p>
                 </TitleBox>
-                <TitleBox>
+                <TitleBox onClick={() => goForeign()}>
                     <p>해외도서</p>
                 </TitleBox>
-                <TitleBox>
+                <TitleBox onClick={() => goEbook()}>
                     <p>e-book</p>
-                </TitleBox>
-                <TitleBox>
-                    <p>인문</p>
-                </TitleBox>
-                <TitleBox>
-                    <p>사회</p>
-                </TitleBox>
-                <TitleBox>
-                    <p>과학</p>
-                </TitleBox>
-                <TitleBox>
-                    <p>문학</p>
-                </TitleBox>
-                <TitleBox>
-                    <p>에세이</p>
-                </TitleBox>
-                <TitleBox>
-                    <p>자기계발</p>
-                </TitleBox>
-                <TitleBox>
-                    <p>수험서</p>
-                </TitleBox>
-                <TitleBox>
-                    <p>어린이</p>
-                </TitleBox>
-                <TitleBox>
-                    <p>종교</p>
-                </TitleBox>
-                <TitleBox>
-                    <p>역사</p>
-                </TitleBox>
-                <TitleBox>
-                    <p>경제경영</p>
-                </TitleBox>
-                <TitleBox>
-                    <p>여행</p>
-                </TitleBox>
-                <TitleBox>
-                    <p>예술</p>
-                </TitleBox>
-                <TitleBox>
-                    <p>외국어</p>
-                </TitleBox>
-                <TitleBox>
-                    <p>건강</p>
                 </TitleBox>
             </Banner>
             <ProductList>
-                <Product onClick={ goDetail }>
-                    <ProductImg src={ BookImg }>
-
-                    </ProductImg>
-                    <ProductDec>
-                        <TitleP>title</TitleP>
-                        <DateP>date</DateP>
-                        <PriceP>price</PriceP>
-                    </ProductDec>
-                </Product>
+                {products?.map((product) => {
+                    return (
+                    <Product key={product.id} onClick={() =>  goDetail(product.id) }>
+                        <ProductImg src={ localStorage.getItem("img"+product.imgurl+"_s3") } />
+                        <ProductDec>
+                            <TitleP>{product.name}</TitleP>
+                            <DateP>{product.date.substr(0,10)}</DateP>
+                            <PriceP>{product.price}원</PriceP>
+                        </ProductDec>
+                    </Product>
+                    )
+                })}
             </ProductList>
         </MenuWrap>    
         </>
@@ -100,7 +184,7 @@ const MenuWrap = styled.div`
 `;
 
 const Banner = styled.div`
-    width:50vh;
+    width:35vh;
     height:100%;
     display:flex;
     justify-content:center;
@@ -119,7 +203,7 @@ const ProductList = styled.div`
 `;
 
 const Product = styled.div`
-    width:45vh;
+    width:30vh;
     height:100%;
     margin-top:15px;
     margin-left:15px;
@@ -129,8 +213,8 @@ const Product = styled.div`
 `;
 
 const ProductImg = styled.img`
-    width:45vh;
-    height:60vh;
+    width:30vh;
+    height:40vh;
     z-index:1;
     box-shadow: 2px 2px 2px 2px #000;
 `;
@@ -144,7 +228,7 @@ const ProductDec = styled.div`
 const TitleP = styled.p`
     margin:0;
     margin-left:5px;
-    font-size:20px;
+    font-size:17px;
     font-weight:bolder;
 `;
 
@@ -152,12 +236,14 @@ const DateP = styled.p`
     margin:5px;
     color: #74747B;
     font-weight: bolder;
+    font-size:12px;
 `;
 
 const PriceP = styled.p`
     margin:0;
     margin-left:5px;
     color: #74747B;
+    font-size:12px;
 `;
 
 const TitleBox = styled.div`
@@ -167,4 +253,5 @@ const TitleBox = styled.div`
     justify-content:center;
     align-items:center;
     border-bottom:3px solid #ddd;
+    cursor:pointer;
 `;
