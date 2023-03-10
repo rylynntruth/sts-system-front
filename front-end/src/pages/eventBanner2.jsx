@@ -10,6 +10,8 @@ const EventBanner2 = () => {
     const [lastTime, setLastTime] = useState("");
     const [timeMessage, setTimeMessage] = useState("검색 중 입니다.");
     const [totalTime, setTotalTime] = useState("");
+    const [enterFlag, setEnterFlag] = useState(false);
+
 
     const goBack = () => {
         navigate("/Event");
@@ -81,11 +83,37 @@ const EventBanner2 = () => {
             totalTime = Number(couponList) - Number(currentTime);
         }
         if (Number(totalTime) <= 0) {
-            setTimeMessage("이벤트가 없습니다.");
+            setTimeMessage("이벤트가 진행 중입니다.");
             setLastTime("");
+            setEnterFlag(true);
         } else {
             setTimeMessage("이벤트 진행 예정");
             setLastTime(totalTime + "분 남았습니다.");
+            setEnterFlag(false);
+        }
+        setTotalTime(totalTime);
+    };
+
+    const enterQueue = () => {
+        if (enterFlag === true) {
+            /*try {
+                axios
+                    .post("https://api.trafficreasearchinstitute.store/queue", {
+
+                    },{ headers: {
+                        Authorization: localStorage.getItem("Authorization")
+                    }})
+                    .then((res) => {
+                        alert(res.data);
+                    });
+            } catch (error) {
+                console.log(error);
+                alert("잠시뒤에 시도해주세요.");
+            }*/
+            alert("개발 중입니다.");
+        } else {
+            alert("이벤트 시간이 아닙니다. \n잠시뒤에 시도해주세요.");
+            return;
         }
     };
 
@@ -107,6 +135,10 @@ const EventBanner2 = () => {
                         let totalTime = 0;
                         if (res.data.length === 0) {
                             totalTime = 0;
+                            setTimeMessage("이벤트가 없습니다.");
+                            setLastTime("");
+                            setEnterFlag(false);
+                            return;
                         } else {
                             totalTime = currentTimeCalc(res.data[0].date);
                         }
@@ -143,7 +175,7 @@ const EventBanner2 = () => {
         </BannerHeader>
         <MainContainer>
             <ButtonContainer>
-                <EventJoin>
+                <EventJoin onClick={ enterQueue }>
                     이벤트참여
                 </EventJoin>
             </ButtonContainer>
