@@ -64,7 +64,7 @@ const EventBanner = () => {
         } else {
             try {
                 axios
-                    .post("http://localhost:8080/coupon", {
+                    .post("https://api.trafficreasearchinstitute.store/coupon", {
                         couponType: couponType,
                         date: couponTime,
                         count:couponCount
@@ -102,7 +102,7 @@ const EventBanner = () => {
                     }
                 };
                 await axios
-                    .get("http://localhost:8080/coupon", config)
+                    .get("https://api.trafficreasearchinstitute.store/coupon", config)
                     .then((res) => {
                         console.log(res.data);
                         setCouponList(res.data);
@@ -120,7 +120,7 @@ const EventBanner = () => {
                     }
                 };
                 await axios
-                    .get("http://localhost:8080/finishEvent", config)
+                    .get("https://api.trafficreasearchinstitute.store/finishEvent", config)
                     .then((res) => {
                         console.log(res.data);
                         setBeforeList(res.data);
