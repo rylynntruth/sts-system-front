@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import backArrow from "../img/backX.png"
-import banner from "../img/bannerCon1.png"
 
 const EventBanner = () => {
     const navigate = useNavigate();
 
+    const [couponType, setCouponType] = useState("");
+    const [couponTime, setCouponTime] = useState("");
+    const [couponCount, setCouponCount] = useState("");
+
     const goBack = () => {
         navigate("/Event");
+    };
+
+    const handleSelect = (e) => {
+        setCouponType(e.target.value);
     };
 
     return(
@@ -18,9 +25,48 @@ const EventBanner = () => {
             </BackArrow>
         </BannerHeader>
         <BannerContainer>
-            <BannerCenter src= { banner }>
+            <RecentContainer>
+                <EventInputDiv>
+                    <InputContainer>
+                        <CouponTitle>
+                            쿠폰타입 : 
+                            <CouponTypeInput onChange={ handleSelect }>
+                                <option value=""></option>
+                                <option value="A1001:1">A1001</option>
+                                <option value="B1001:1">B1001</option>
+                                <option value="C1001:1">C1001</option>
+                                <option value="D1001:1">D1001</option>
+                                <option value="E1001:1">E1001</option>
+                            </CouponTypeInput>
+                        </CouponTitle>
+                        <TimeTitle>
+                            시간입력(ex:2201010930) : 
+                            <TimeInput />
+                        </TimeTitle>
+                        <CountTitle>
+                            수량입력 : 
+                            <CountInput />
+                        </CountTitle>
+                    </InputContainer>
+                    <ButtonContainer>
+                        <AddButton>추가</AddButton>
+                    </ButtonContainer>
+                </EventInputDiv>
+                <RecentHeader>
+                    <RecentTitle>진행중인 이벤트</RecentTitle>
+                </RecentHeader>
+                <RecentEventList>
 
-            </BannerCenter>
+                </RecentEventList>
+            </RecentContainer>
+            <BeforeContainer>
+                <BeforeHeader>
+                    <BeforeTitle>종료된 이벤트</BeforeTitle>
+                </BeforeHeader>
+                <BeforeEventList>
+
+                </BeforeEventList>
+            </BeforeContainer>
         </BannerContainer>
         </>
     );
@@ -45,17 +91,110 @@ const BackArrow = styled.img`
 
 const BannerContainer = styled.div`
     width: 100%;
-    height: 90vh;
+    height: 100%;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 `;
 
-const BannerCenter = styled.img`
-    width: 100vh;
-    height: 150vh;
+const RecentContainer = styled.div`
+    width: 50%;
+    height: 100%;
+`;
+
+const BeforeContainer = styled.div`
+    width: 50%;
+    height: 100%;
+`;
+
+const EventInputDiv = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
     border:1px solid #ddd;
-    margin-top:20px;
-    margin-bottom:20px;
+`;
+
+const RecentEventList = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    border:1px solid #000;
+`;
+
+const RecentHeader = styled.div`
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+const RecentTitle = styled.p`
+
+`;
+
+const BeforeHeader = styled.div`
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+const BeforeTitle = styled.p`
+
+`;
+
+const BeforeEventList = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    border:1px solid #000;
+`;
+
+const CouponTypeInput = styled.select`
+    width: 10vw;
+    height: 5vh;
+    border:1px solid #ddd;
+`;
+
+const TimeInput = styled.input`
+    width: 10vw;
+    height: 5vh;
+    border:1px solid #ddd;
+`;
+
+const CountInput = styled.input`
+    width: 10vw;
+    height: 5vh;
+    border:1px solid #ddd;
+`;
+
+const CouponTitle = styled.p`
+    padding:0;
+`;
+
+const TimeTitle = styled.p`
+    padding:0;
+`;
+
+const CountTitle = styled.p`
+
+`;
+
+const InputContainer = styled.div`
+    width: 50%;
+`;
+
+const ButtonContainer = styled.div`
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+const AddButton = styled.button`
+    width:10vw;
+    height:7vh;
+    background-color:#fff;
 `;

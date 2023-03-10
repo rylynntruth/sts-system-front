@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import backArrow from "../img/backX.png"
-import banner1 from "../img/banner1.png"
-import banner2 from "../img/banner2.png"
+import setting from "../img/setting.png"
+import bigEvent from "../img/bigevent.png"
+import smallEvent from "../img/smallEvent.png"
 
 const EventPage = () => {
     const navigate = useNavigate();
@@ -31,13 +32,13 @@ const EventPage = () => {
             </BackArrow>
         </EventHeader>
         <BannerContainer>
-            <Banner onClick={ goBanner } src={ banner2 }>
+            <Banner onClick={ goBanner } src = { setting }>
                 
             </Banner>
-            <Banner onClick={ goBanner2 } src= { banner1 }>
+            <Banner onClick={ goBanner2 } src = { bigEvent }>
                 
             </Banner>
-            <Banner onClick={ goBanner3 }>
+            <Banner onClick={ goBanner3 } src = { smallEvent }>
                 
             </Banner>
         </BannerContainer>
@@ -72,7 +73,7 @@ const BannerContainer = styled.div`
 `;
 
 const Banner = styled.img`
-    width:80vh;
-    height:20vh;
+    width:130vh;
+    height:25vh;
     border:1px solid #ddd;
 `;
