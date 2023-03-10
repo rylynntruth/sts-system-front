@@ -102,7 +102,7 @@ const EventBanner2 = () => {
                     }
                 };
                 axios
-                    .get("http://localhost:8080/coupon", config)
+                    .get("https://api.trafficreasearchinstitute.store/coupon", config)
                     .then((res) => {
                         let totalTime = 0;
                         if (res.data.length === 0) {
