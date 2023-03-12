@@ -37,7 +37,7 @@ const MyPage = () => {
                     }
                 };
                 await axios
-                    .get("http://localhost:8080/api/event/couponWinner", config)
+                    .get("https://api.spaceodessey.store/api/event/couponWinner", config)
                     .then((res) => {
                         console.log(res.data);
                         setCouponList(res.data);
