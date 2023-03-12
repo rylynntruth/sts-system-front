@@ -96,7 +96,7 @@ const EventBanner2 = () => {
 
     const enterQueue = () => {
         if (enterFlag === true) {
-            /*try {
+            try {
                 axios
                     .post("https://api.trafficreasearchinstitute.store/queue", {
 
@@ -109,8 +109,7 @@ const EventBanner2 = () => {
             } catch (error) {
                 console.log(error);
                 alert("잠시뒤에 시도해주세요.");
-            }*/
-            alert("개발 중입니다.");
+            }
         } else {
             alert("이벤트 시간이 아닙니다. \n잠시뒤에 시도해주세요.");
             return;
@@ -179,11 +178,6 @@ const EventBanner2 = () => {
                     이벤트참여
                 </EventJoin>
             </ButtonContainer>
-            <TextContainer>
-                <TextDiv>
-                    <TextObj>test</TextObj>
-                </TextDiv>
-            </TextContainer>
         </MainContainer>
         </>
     );

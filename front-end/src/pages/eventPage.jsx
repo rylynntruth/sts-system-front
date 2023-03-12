@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import backArrow from "../img/backX.png"
 import setting from "../img/setting.png"
 import bigEvent from "../img/bigevent.png"
-import smallEvent from "../img/smallEvent.png"
+import smallEvent from "../img/smallbanner.png"
 
 const EventPage = () => {
     const navigate = useNavigate();
@@ -36,9 +36,6 @@ const EventPage = () => {
                 
             </Banner>
             <Banner onClick={ goBanner2 } src = { bigEvent }>
-                
-            </Banner>
-            <Banner onClick={ goBanner3 } src = { smallEvent }>
                 
             </Banner>
         </BannerContainer>
